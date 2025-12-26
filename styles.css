@@ -3,48 +3,102 @@
   --red: #c93c3c;
   --gold: #f4b400;
   --bg: #f5f3f0;
+  --white: #fff;
+  --gray: #f8f8f8;
+  --dark-gray: #222;
 }
 
+/* GLOBAL RESET */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--bg);
-  color: #222;
+  color: var(--dark-gray);
+  line-height: 1.5;
 }
 
-/* HERO */
-
+/* HERO SECTION */
 .hero {
   text-align: center;
-  padding: 2.5rem 1.25rem;
+  padding: 3rem 1.25rem;
   background: linear-gradient(135deg, var(--blue), var(--red));
-  color: #fff;
+  color: var(--white);
 }
 
 .hero h1 {
-  margin: 0 0 0.4rem;
-  font-size: 2.2rem;
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
 }
 
 .hero h2 {
-  margin: 0 0 0.6rem;
-  font-weight: 500;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+/* BANNER */
+.banner {
+  background-image: url("assets/church-banner.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 340px;
+  position: relative;
+}
+
+.banner-overlay {
+  background: linear-gradient(rgba(31, 58, 95, 0.75), rgba(0, 0, 0, 0.65));
+  color: var(--white);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.banner-overlay h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.banner-overlay h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.banner-overlay p {
   font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.scripture {
+  max-width: 700px;
+  margin-top: 18px;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--white);
+}
+
+.scripture span {
+  display: block;
+  margin-top: 6px;
+  color: var(--gold);
 }
 
 /* CARD LAYOUT */
-
 .card {
   max-width: 950px;
   margin: 2rem auto;
   padding: 1.5rem;
-  background: #fff;
+  background: var(--white);
   border-radius: 14px;
   box-shadow: 0 10px 26px rgba(0,0,0,0.1);
   display: flex;
@@ -57,11 +111,23 @@ body {
   flex: 1 1 280px;
 }
 
+.card-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
 /* PHOTO FRAME */
 .photo-frame {
   width: 260px;
   height: 200px;
-  border: 3px solid #d4af37; /* gold */
+  border: 3px solid var(--gold);
   border-radius: 14px;
   background-color: #fbf7ef;
   display: flex;
@@ -76,23 +142,20 @@ body {
   object-fit: cover;
   border-radius: 10px;
 }
-/* BADGE */
 
+/* BADGE */
 .badge {
   margin-top: 10px;
   padding: 10px 18px;
-  background: linear-gradient(135deg, #1f3a5f, #d4af37);
-  color: #fff;
+  background: linear-gradient(135deg, #1f3a5f, var(--gold));
+  color: var(--white);
   border-radius: 22px;
   font-weight: 600;
   text-align: center;
-}
-
-.badge {
   width: fit-content;
 }
-/* VERSE */
 
+/* VERSE */
 .verse {
   margin-bottom: 1.5rem;
 }
@@ -108,25 +171,18 @@ body {
   color: var(--blue);
 }
 
-/* GENERIC BUTTONS */
-
+/* BUTTONS */
 .btn {
   display: inline-block;
-  margin: 0.4rem 0;
-  padding: 0.7rem 1.4rem;
-  border-radius: 999px;
+  margin: 0.5rem 0;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
   text-decoration: none;
   font-weight: 600;
-  color: #fff;
+  color: var(--white);
   border: none;
   cursor: pointer;
-}
-
-/* CASH APP + VENMO (BIG BUTTONS) */
-
-.btn.cashapp,
-.btn.venmo {
-  width: 100%;
+  transition: background 0.3s ease;
   text-align: center;
 }
 
@@ -138,61 +194,75 @@ body {
   background-color: #00a83a;
 }
 
-.btn.venmo {
-  background-color: #3d95ce;
+.btn.zelle {
+  background-color: #4a86e8;
 }
 
-.btn.venmo:hover {
-  background-color: #347fb0;
+.btn.zelle:hover {
+  background-color: #2e64d3;
 }
 
-/* ZELLE AREA */
-
-.zelle-box {
-  margin: 1.5rem 0 0.75rem;
+.btn.pushpay {
+  background-color: #1f3a5f;
 }
 
-.zelle-box h4 {
-  margin: 0 0 0.5rem;
+.btn.pushpay:hover {
+  background-color: #13223c;
 }
 
-.zelle-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+/* GIVE SECTION */
+.give {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  background: var(--white);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  text-align: center;
 }
 
-.zelle-row p {
-  margin: 0;
+.give h3 {
+  margin-bottom: 0.5rem;
+  color: var(--blue);
 }
 
-/* smaller Zelle button but same visual family as .btn */
+.give p {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
 
-#copyZelle {
-  padding: 0.45rem 0.9rem;
-  border-radius: 8px;
-  border: none;
-  background-color: #4b6fd3;
-  color: #fff;
-  font-size: 0.95rem;
-  cursor: pointer;
+.zelle-box, .pushpay-box {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.zelle-box h4, .pushpay-box h4 {
+  margin-bottom: 0.5rem;
+  color: var(--blue);
+}
+
+.zelle-box .note {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem;
 }
 
 /* FOOTER */
-
 .footer {
   text-align: center;
   padding: 1.5rem 1rem 2rem;
   font-size: 0.9rem;
   color: #555;
+  background: var(--gray);
 }
 
 /* SHIRTS SECTION */
-
 .shirts {
   max-width: 100%;
   margin: 1rem 0;
+  padding: 1rem 0;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .shirts h3 {
@@ -217,28 +287,7 @@ body {
   margin-top: 1rem;
 }
 
-/* Keep hero/card edges aligned */
-
-.hero {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
-/* Right side vertical spacing */
-
-.card-right {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.card-left {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 👈 THIS fixes the alignment */
-}
 /* CAROUSEL */
-
 .carousel {
   display: flex;
   align-items: center;
@@ -260,8 +309,6 @@ body {
 #shirtImage {
   max-width: 100%;
   max-height: 80%;
-  width: auto;
-  height: auto;
   object-fit: contain;
 }
 
@@ -271,10 +318,36 @@ body {
   text-align: center;
 }
 
+/* EVENT INFO */
+.event-info {
+  background: var(--gray);
+  padding: 30px 20px;
+  margin: 40px auto;
+  text-align: center;
+  max-width: 900px;
+  color: var(--dark-gray);
+}
+
+.event-info h3 {
+  margin-top: 20px;
+  margin-bottom: 6px;
+  color: var(--blue);
+}
+
+.event-info p {
+  font-size: 1.05rem;
+}
+
+.event-info a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .banner {
-    height: 260px;
+  .hero {
+    padding: 2rem 1rem;
   }
 
   .banner-overlay h1 {
@@ -291,146 +364,21 @@ body {
 
   .card {
     flex-direction: column;
-    padding: 15px;
+    padding: 1rem;
   }
 
   .card-left,
   .card-right {
     width: 100%;
   }
-}
+
   .photo-frame {
     width: 100%;
   }
 
-  .shirts {
-    max-width: 100%;
-    margin: 1rem 0 0;
-    padding: 1rem 0;
-    box-shadow: none;
-    border-radius: 0;
-  }
-
   .btn.cashapp,
-  .btn.venmo {
+  .btn.zelle,
+  .btn.pushpay {
     width: 100%;
   }
-
-
-
-
-
-
-
-
-/* ===== Banner ===== */
-.banner {
-  background-image: url("assets/church-banner.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 340px;
-  position: relative;
-}
-
-.banner-overlay {
-  background: linear-gradient(
-    rgba(31, 58, 95, 0.75),
-    rgba(0, 0, 0, 0.65)
-  );
-  color: #f9f9f9;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 24px;
-}
-
-.banner-overlay h1 {
-  font-size: 3rem;
-  letter-spacing: 2px;
-  margin-bottom: 6px;
-}
-
-.banner-overlay h2 {
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: #d4af37;
-}
-
-.scripture {
-  max-width: 700px;
-  margin-top: 18px;
-  font-style: italic;
-  font-size: 1.05rem;
-  color: #f9f9f9;
-}
-
-.scripture span {
-  display: block;
-  margin-top: 6px;
-  color: #d4af37;
-}
-
-
-
-
-.banner-overlay h1 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-}
-
-.banner-overlay h2 {
-  font-size: 1.5rem;
-  font-weight: 400;
-}
-
-.banner-overlay p {
-  font-size: 1.1rem;
-  margin-top: 10px;
-}
-
-/* ===== Event & Contact ===== */
-.event-info {
-  background: #f8f8f8;
-  padding: 30px;
-  text-align: center;
-  margin-top: 40px;
-}
-
-.event-info h3 {
-  margin-bottom: 8px;
-  color: #333;
-}
-
-.event-info a {
-  color: #0066cc;
-  text-decoration: none;
-}
-
-
-.event-info {
-  background: #f9f9f9;
-  padding: 30px 20px;
-  margin: 40px auto;
-  text-align: center;
-  max-width: 900px;
-  color: #222;
-}
-
-.event-info h3 {
-  margin-top: 20px;
-  margin-bottom: 6px;
-  color: #1f3a5f;
-}
-
-.event-info p {
-  font-size: 1.05rem;
-}
-
-.event-info a {
-  color: #d4af37;
-  text-decoration: none;
-  font-weight: 600;
 }
